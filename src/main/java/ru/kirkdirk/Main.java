@@ -3,13 +3,7 @@ package ru.kirkdirk;
 import java.util.*;
 
 public class Main {
-    static Random random;
-    static Map<Integer, Boolean> results1;       // Статистика для игрока, не меняющего свой выбор.
-    static Map<Integer, Boolean> results2;       // Статистика для игрока, изменяющего свой выбор.
-    static int doorsNumber;                      // Количество дверей.
-    static int attempts;                         // Количество попыток.
-
-    /**
+     /**
      * Количество дверей
      */
     static int countDoors;
@@ -18,9 +12,9 @@ public class Main {
      */
     static int raffle;
     /**
-     * Переменная для выбора двери
+     * Генератор случайности
      */
-    static Random choice;
+    static Random random;
     /**
      * Мапа для результатов розыгрыша c заменой первоначального выбора
      */
@@ -29,21 +23,14 @@ public class Main {
 
     public static void main(String[] args) {
 
-        random = new Random();
-        results1 = new HashMap<>();
-        results2 = new HashMap<>();
-        doorsNumber = 3; // код работает только для 3-х дверей, так что
-                        // вместо переменной можно было использовать просто 3
-        attempts = 1000;
-
         countDoors = 3;
         raffle = 1000;
-        choice = new Random();
+        random = new Random();
         resultsSelectionChange = new HashMap<>();
         resultsWithoutChaging = new HashMap<>();
 
-        System.out.println(" Парадокс Монти Холла: " +
-                doorsNumber + " двери и " +
+        System.out.println("\n Парадокс Монти Холла: " +
+                countDoors + " двери и " +
                 raffle + " розыгрышей\n");
 
 
@@ -52,11 +39,11 @@ public class Main {
 //          - выигрышную дверь,
 //          - дверь первого выбора,
 //          - открытую дверь
-            int winDoor = random.nextInt(countDoors)+1; // дверь, за которой приз
-            int choice1Door = random.nextInt(countDoors)+1; // первый выбор двери
+            int winDoor = random.nextInt(countDoors); // дверь, за которой приз
+            int choice1Door = random.nextInt(countDoors); // первый выбор двери
             int openDoor = -1;
             int choice2Door = -1;
-            for (int i = 1; i < countDoors+1; i++) {
+            for (int i = 0; i < countDoors; i++) {
                 if (i != winDoor && i != choice1Door) {
                     openDoor = i;
                 }
